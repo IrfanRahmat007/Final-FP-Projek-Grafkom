@@ -1,0 +1,70 @@
+# depslib dependency file v1.0
+1419920027 source:c:\users\asus-pc\desktop\test\test\test\main.cpp
+	<Windows.h>
+	<gl\GL.h>
+	<gl\GLU.h>
+	<gl\glut.h>
+	"glm.h"
+
+1368254960 e:\kuliah\gl\freeglut\include\gl\glut.h
+	"freeglut_std.h"
+
+1368254960 e:\kuliah\gl\freeglut\include\gl\freeglut_std.h
+	<windows.h>
+	<OpenGL/gl.h>
+	<OpenGL/glu.h>
+	<GL/gl.h>
+	<GL/glu.h>
+	<stdlib.h>
+
+1416303494 e:\kuliah\gl\devil_glm\glm\glm.h
+	<OpenGL/gl.h>
+	<OpenGL/glu.h>
+	<Windows.h>
+	<gl\GL.h>
+	<gl\GLU.h>
+	<gl\glut.h>
+
+1416304354 source:e:\kuliah\gl\devil_glm\glm\glm.c
+	"config.h"
+	<math.h>
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<assert.h>
+	"glm.h"
+	"glmint.h"
+
+1416303488 e:\kuliah\gl\devil_glm\glm\glmint.h
+
+1416304322 source:e:\kuliah\gl\devil_glm\glm\glm_util.c
+	"config.h"
+	<stdlib.h>
+	<stdarg.h>
+	<string.h>
+	<stdio.h>
+	"glm.h"
+	"glmint.h"
+
+1416304304 source:e:\kuliah\gl\devil_glm\glm\glmimg.c
+	"config.h"
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<assert.h>
+	<math.h>
+	<windows.h>
+	<OpenGL/gl.h>
+	<OpenGL/glext.h>
+	<Windows.h>
+	<gl\glew.h>
+	"glm.h"
+	"glmint.h"
+
+1419324372 source:e:\kuliah\gl\devil_glm\glm\glmimg_devil.c
+	"config.h"
+	"glm.h"
+	"glmint.h"
+	<IL\il.h>
+	<stdlib.h>
+
