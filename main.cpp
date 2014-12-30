@@ -30,7 +30,7 @@ GLfloat diffuse_color[] = {1.f, 1.f, 1.f,0.f};
 GLfloat specular_color[]= {0.01f, 0.01f, 0.01f, 0.f};
 GLfloat light_position[] = { 1.0, 1.0, -1.0, 0.0 };
 glClearColor (0.0, 0.0, 0.0, 0.0);
-//glShadeModel (GL_SMOOTH);
+glShadeModel (GL_SMOOTH);
 
 //glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular);
 glMaterialfv(GL_FRONT, GL_SHININESS, mat_shininess);

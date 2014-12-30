@@ -92,7 +92,6 @@ newmtl 16___Default
 	illum 2
 	Ks 0.000000000000 0.000000000000 0.000000000000
 	Ke 0.000000000000 0.000000000000 0.000000000000
-	map_Ka texture.jpg
 	map_Kd texture.jpg
 
 newmtl Tiang
