@@ -1,4 +1,5 @@
 #include <Windows.h>
+#include <stdio.h>
 #include <gl\GL.h>
 #include <gl\GLU.h>
 #include <gl\glut.h>
@@ -16,6 +17,7 @@ float sudut=1.f;
 float inc=0.05f;
 float pusatx = 0.0, pusaty = 0.0, radius = 0.1;
 float PosisiX = 0.02, PosisiY=0.01, PosisiZ=0.f;
+float PercepatanSY=0.f, SudutY=0.f, SudutY2=0.1f;
 float CameraX=0.f,CameraY=0.f,CameraZ=5.f;
 float CameraRX=0.f,CameraRY=0.f,CameraRZ=0.f;
 float CameraUX=0.f,CameraUY=1.f,CameraUZ=0.f;
@@ -111,21 +113,29 @@ glPopMatrix();
 if(mobil)
 {
     glLoadIdentity();
-//    glRotatef(90,1,0,0);
+    //printf("Status : %d\n",status);
     glScalef(0.3f,0.3f,0.3f);
     glTranslatef(PosisiX,PosisiY, PosisiZ);
-    PosisiZ-=percepatanZ;
+    PosisiZ+=percepatanZ;
     PosisiY-=percepatanY;
-    if(PosisiY>-1.f && status==0)
+    PosisiX+=percepatanX;
+    glRotatef(SudutY,0,1,0);
+    if(PosisiY>-1.f)
     {
-        percepatanY=0.01f;
+        if(status==0)
+        {
+            percepatanY=0.01f;
+        }
     }
     else if(PosisiY<=-1.5f)
     {
-        if(bump<=0)
+        if(bump<=0 )
         {
             percepatanY=0;
-            status=1;
+            if(status==0)
+            {
+                status=1;
+            }
         }
         else
         {
@@ -134,13 +144,117 @@ if(mobil)
 
         }
     }
-    if(PosisiZ>-3.f && status==1)
+    if(status==1)
     {
-        percepatanY=0.f;
-        percepatanZ=0.01f;
+        if(PosisiZ>-3.f)
+        {
+            percepatanX=0.f;
+            percepatanY=0.f;
+            percepatanZ=-0.01f;
+        }
+        else if(PosisiZ<=-2.f && PosisiZ>-3.1f)
+        {
+            //printf("Wahaha\n");
+
+            SudutY+=SudutY2;
+            if(SudutY>90)
+            {
+                SudutY2=0;
+            }
+            else
+            {
+                SudutY2=3.f;
+                percepatanZ=percepatanZ+0.008f;
+            }
+        }
+        else
+        {
+            status=2;
+            percepatanZ=0.f;
+        }
     }
-    else{
-        percepatanZ=0.f;
+    if(status==2)
+    {
+        if(PosisiX<=-4.f)
+        {
+            status=3;
+            percepatanX=0.f;
+        }
+        else if(PosisiX<=-3.9f)
+        {
+            //printf("Wahaha\n");
+
+            SudutY+=SudutY2;
+            if(SudutY>180)
+            {
+                SudutY2=0;
+            }
+            else
+            {
+                SudutY2=3.f;
+                percepatanX=percepatanX+0.008f;
+            }
+        }
+        else
+        {
+            percepatanX=-0.01f;
+        }
+    }
+    if(status==3)
+    {
+        if(PosisiZ>=5.f)
+        {
+            status=4;
+            percepatanZ=0.f;
+        }
+        else if(PosisiZ>=4.9f)
+        {
+            //printf("Wahaha\n");
+
+            SudutY+=SudutY2;
+            if(SudutY>270)
+            {
+                SudutY2=0;
+            }
+            else
+            {
+                SudutY2=3.f;
+                percepatanZ=percepatanZ-0.008f;
+            }
+        }
+        else
+        {
+            percepatanZ=0.01f;
+
+        }
+    }
+    if(status==4)
+    {
+        if(PosisiX>=4.5f)
+        {
+            SudutY=0;
+            status=1;
+            percepatanZ=0.01f;
+        }
+        else if(PosisiX>=4.4f)
+        {
+            //printf("Wahaha\n");
+
+            SudutY+=SudutY2;
+            if(SudutY>360 && SudutY!=0)
+            {
+                SudutY2=0;
+            }
+            else
+            {
+                SudutY2=3.f;
+                percepatanX=percepatanX-0.008f;
+            }
+        }
+        else
+        {
+            percepatanX=0.01f;
+        }
     }
     //Kurang Deteksi Lebih dari 18 PosisiZ, Harus belok(Percepetan sudut y ditambah). Percepatan x minus( kiri).
     glmDraw(mobil,  GLM_SMOOTH | GLM_COLOR | GLM_TEXTURE);
@@ -190,6 +304,9 @@ switch(key) {
             glmUnitize(mobil);
             status=0;
         }
+    case 'a':
+        break;
+    case 'd':
     default:
         break;
 }
@@ -203,9 +320,11 @@ void specialKey(int key, int x, int y)
     switch(key){
         case GLUT_KEY_DOWN:
             CameraZ+=0.1f;
+            CameraRZ+=0.1f;
             break;
         case GLUT_KEY_UP:
             CameraZ-=0.1f;
+            CameraRZ-=0.1f;
             break;
         case GLUT_KEY_RIGHT:
             CameraX+=0.1f;

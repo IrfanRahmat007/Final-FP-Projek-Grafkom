@@ -68,3 +68,11 @@
 	<IL\il.h>
 	<stdlib.h>
 
+1419999399 source:c:\users\asus-pc\documents\git\final-fp-projek-grafkom\main.cpp
+	<Windows.h>
+	<stdio.h>
+	<gl\GL.h>
+	<gl\GLU.h>
+	<gl\glut.h>
+	"glm.h"
+
